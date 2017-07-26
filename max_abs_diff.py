@@ -30,3 +30,19 @@ class Solution:
            max=findmax(max,max1-A[i]+i)
            max=findmax(max,max2+A[i]+i)
        return max
+##########Alternative#######
+#def maxArr(self, A):
+#        max1,max2,max3,max4=A[0],-A[0],A[0],-A[0]
+#        min1,min2,min3,min4=A[0],-A[0],A[0],-A[0]
+#        for i in range(0,len(A)):
+#            max1=max(max1,A[i]+i)
+#            max2=max(max2,-A[i]+i)
+#            max3=max(max3,A[i]-i)
+#            max4=max(max4,-A[i]-i)
+#           
+#            min1=min(min1,A[i]+i)
+#            min2=min(min2,-A[i]+i)
+#            min3=min(min3,A[i]-i)
+#            min4=min(min4,-A[i]-i)
+#        ans=max((max1-min1),(max2-min2),(max3-min3),(max4-min4))
+#        return ans
