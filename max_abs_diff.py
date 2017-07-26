@@ -10,7 +10,6 @@
 #f(2, 3) = f(3, 2) = |3 - (-1)| + |2 - 3| = 5
 #
 #So, we return 5.
-
 class Solution:
     # @param A : list of integers
     # @return an integer
@@ -27,12 +26,9 @@ class Solution:
                return b
     
        for i in range(0,len(A)):
-           max1 = findmax(max1,A[i]+i)
-           max=findmax(max,max1-A[i]-i)
-           max2 = findmax(max2,-A[i]+i)
-           max=findmax(max,max2+A[i]-i)
-           max3 = findmax(max3,A[i]-i)
-           max=findmax(max,max3-A[i]+i)
-           max4 = findmax(max4,-A[i]-i)
-           max=findmax(max,max4+A[i]+i)
+           max1 = findmax(max1,A[i]-i)
+           max2 = findmax(max2,-A[i]-i)
+       for i in range(0,len(A)):
+           max=findmax(max,max1-A[i]+i)
+           max=findmax(max,max2+A[i]+i)
        return max
