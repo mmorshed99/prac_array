@@ -16,8 +16,6 @@ class Solution:
     def maxArr(self, A):
        max1 = -9999999999
        max2 = -9999999999
-       max3 = -9999999999
-       max4 = -9999999999
        max =  -9999999999
        def findmax(a,b):
            if a>b:
