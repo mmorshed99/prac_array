@@ -53,7 +53,8 @@ class Solution:
         count_one += 1
      value, start, end = maxSubArray(new_S)
      for i in range(start,end+1):
-        list_S[i] = 1
+        if new_S[i] == 1:    
+          list_S[i] = 1
      for i in range(0,len(list_S)):
        if list_S[i] == 1:
         returned_val += 1
