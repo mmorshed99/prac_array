@@ -16,49 +16,81 @@
 #[2 3]          | 001
 #We see that two pairs [1, 1] and [1, 3] give same number of 1s in final string. So, we return [1, 1].
 #
+#class Solution:
+#    # @param A : string
+#    # @return a list of integers
+#    def flip(self, A):
+#     def maxSubArray(A):
+#       max_current = A[0]
+#       max_global = A[0]
+#       start_id_glob = 0
+#       end_id_glob = 0
+#       start_id_curr = 0
+#       end_id_curr = 0
+#       if len(A)>1:
+#           for i in range(1, len(A)):
+#               max_current_old = max_current
+#               max_current = max(A[i], max_current+A[i])
+#               end_id_curr = i
+#               if A[i] >  max_current_old+A[i]:
+#                 start_id_curr = i
+#               if max_current > max_global:
+#                   max_global = max_current
+#                   start_id_glob = start_id_curr
+#                   end_id_glob = end_id_curr
+#       return max_global,start_id_glob,end_id_glob
+#
+#     list_S = list(A)
+#     new_S = []
+#     count_one = 0
+#     returned_val = 0
+#     for i in range(0,len(list_S)):
+#      list_S[i] = int(list_S[i])
+#      if list_S[i] == 0:
+#        new_S.append(1)
+#      else:
+#        new_S.append(-1)
+#        count_one += 1
+#     value, start, end = maxSubArray(new_S)
+#     for i in range(start,end+1):
+#        if new_S[i] == 1:    
+#          list_S[i] = 1
+#     for i in range(0,len(list_S)):
+#       if list_S[i] == 1:
+#        returned_val += 1
+#     if returned_val > count_one:
+#        return [start+1, end+1]
+#     else:
+#        return []
 class Solution:
     # @param A : string
     # @return a list of integers
     def flip(self, A):
-     def maxSubArray(A):
-       max_current = A[0]
-       max_global = A[0]
-       start_id_glob = 0
-       end_id_glob = 0
-       start_id_curr = 0
-       end_id_curr = 0
-       if len(A)>1:
-           for i in range(1, len(A)):
-               max_current_old = max_current
-               max_current = max(A[i], max_current+A[i])
-               end_id_curr = i
-               if A[i] >  max_current_old+A[i]:
-                 start_id_curr = i
-               if max_current > max_global:
-                   max_global = max_current
-                   start_id_glob = start_id_curr
-                   end_id_glob = end_id_curr
-       return max_global,start_id_glob,end_id_glob
-
-     list_S = list(A)
-     new_S = []
-     count_one = 0
-     returned_val = 0
-     for i in range(0,len(list_S)):
-      list_S[i] = int(list_S[i])
-      if list_S[i] == 0:
-        new_S.append(1)
-      else:
-        new_S.append(-1)
-        count_one += 1
-     value, start, end = maxSubArray(new_S)
-     for i in range(start,end+1):
-        if new_S[i] == 1:    
-          list_S[i] = 1
-     for i in range(0,len(list_S)):
-       if list_S[i] == 1:
-        returned_val += 1
-     if returned_val > count_one:
-        return [start+1, end+1]
-     else:
-        return []
+        curr_list = [0,0]
+        global_list = []
+        curr_total = 0
+        global_total = 0
+        if len(A) > 0:
+            for i in range(len(A)):
+                if A[i] == '0':
+                    curr_total += 1
+                    if len(curr_list) > 0:
+                       curr_list = [curr_list[0],i]
+                    else:
+                        curr_list = [i,i]
+                    if curr_total > global_total:
+                        global_total = curr_total
+                        global_list = curr_list[:]
+                else:
+                    curr_total -= 1
+                    if curr_total >= 0:
+                        curr_list = [curr_list[0],i]
+                    else:
+                        curr_total = 0
+                        curr_list = []
+        if len(global_list) == 0:
+            return []
+        else:
+            global_list[0] += 1
+            global_list[1] += 1
+            return global_list
